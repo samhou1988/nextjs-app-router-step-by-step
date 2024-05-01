@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import type { Metadata } from 'next';
-import { ThemeProvider } from '@/providers/theme';
+import { ThemeProvider } from '@/components/theme-provider';
 
 import './globals.css';
 
@@ -15,15 +15,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <ThemeProvider defaultTheme="dark">
-      <html lang="zh-cmn-Hans">
+      <html lang="zh-cmn-Hans" suppressHydrationWarning>
         <body>
-          <div>
-            <main>{children}</main>
-          </div>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </body>
       </html>
-    </ThemeProvider>
 
 
   );
