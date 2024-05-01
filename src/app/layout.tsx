@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import type { Metadata } from 'next';
+import { ThemeProvider } from '@/providers/theme';
 
 import './globals.css';
 
@@ -14,13 +15,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="zh-cmn-Hans">
-      <body>
-        <div>
-          <main>{children}</main>
-        </div>
-      </body>
-    </html>
+    <ThemeProvider defaultTheme="dark">
+      <html lang="zh-cmn-Hans">
+        <body>
+          <div>
+            <main>{children}</main>
+          </div>
+        </body>
+      </html>
+    </ThemeProvider>
+
 
   );
 }
